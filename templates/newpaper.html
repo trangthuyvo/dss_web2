@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- 
+    Free Responsive Template by templatemo
+    http://www.templatemo.com
+-->
+{% load static %}
+<html lang="en">
+
+
+<title>Write your new paper here !</title>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css" href='{% static "assets/css/bootstrap.css" %}' />
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" href='{% static "assets/js/colorbox/colorbox.css" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "assets/css/templatemo_style.css" %}' />
+
+
+<body>
+    <div class="row">
+        <div class="templatemo-line-header" style="margin-top: 0px;">
+            <div class="text-center">
+                <hr class="team_hr team_hr_left hr_gray" /><span class="span_blog txt_darkgrey">POST NEW PAPER</span>
+                <hr class="team_hr team_hr_right hr_gray" />
+            </div>
+        </div>
+        <br class="clearfix" />
+    </div>
+
+    <div id="content">
+
+        <form action=create method="post" enctype="multipart/form-data">{% csrf_token %}
+            <input type='hidden' name='csrfmiddlewaretoken' value='ZFCXFy6DUtKKHd0vF3cJCV7LOqGJf6wp' />
+            <div style="margin-left:100px;margin-right:100px;margin-top:20px;margin-bottom:50px">
+                <div align="center">
+                    <a align="center" style="font-size:20px;color:green">TITLE</a> 
+                    <input id="id_title" maxlength="200" name="title" placeholder="Title..." class="form-control" />
+                </div>
+                <div align="center">
+                    <a align="center" style="font-size:20px;color:green">POST BY:</a> 
+                    <input id="id_person" name="person" type="text" class="form-control" placeholder="Write your name...." />
+                </div>
+                <div align="center">
+                    <a align="center" style="font-size:20px;color:green">CONTENT</a> 
+                    <textarea cols="40" id="id_body" name="body" rows="10" class="form-control"/>
+                    </textarea>
+                </div>
+                <div align="center">
+                    <a align="center" style="font-size:20px;color:green">DATE</a> 
+                    <input id="id_pub_date" name="pub_date" type="text" class="form-control" placeholder="Date/Month/Year..." />
+                </div>
+                <div align="center">
+                    <a align="center" style="font-size:20px;color:green">IMAGE</a> 
+                    <input id="id_image" name="picture" type="file"/>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" name="submit" value="Create New Post" class="btn btn-green">
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+
+</body>
+
+</html>

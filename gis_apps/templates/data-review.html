@@ -1,0 +1,127 @@
+{% load static %} {% load return_item %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    
+</head>
+
+<body>
+
+    <div>
+        <h1> Web GIS - Hydrological and Meterological Database </h1>
+        <div class="main">
+            <div class="toolbox">
+                <div class="tool" id="layer-manager">Layers</div>
+                <div class="tool" id="data-review">Data-review</div>
+            </div>
+
+            <table border="1px">
+
+            
+            {% for id in id_list %}
+                <tr>
+                    <td class = "SiteId" >{{id}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                {% for data in data_dict|return_item:id %}
+                <tr>
+                    <td class="Variable" id = {{ "Variable_"|add:id|stringformat:"s_"|add:data.0|stringformat:"s"}}>{{data.0}}</td>
+                     <td class="Starttime" >   
+                        <input type="text" id = {{ "Starttime_"|add:id|stringformat:"s_"|add:data.0|stringformat:"s"}} value={{data.1}}>
+                    </td>
+                    <td class="Endtime" >
+                        <input type="text" id = {{ "Endtime_"|add:id|stringformat:"s_"|add:data.0|stringformat:"s"}} value={{data.2}}> 
+                    </td>
+                    <td class = "Check" >
+                        <input type="checkbox" id = {{ "Check_"|add:id|stringformat:"s_"|add:data.0|stringformat:"s"}} onclick="">
+                    </td>
+                </tr>
+
+                {% endfor %} 
+             {% endfor %}
+            </table>
+        </div>
+        <div>
+            <input type="submit" name="submit" value="Download" id="Download">
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+$(document).ready(function () {
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        $('#Download').click(function () {
+            
+                var selected_id = [];
+                var selected_variable = [];
+                var selected_starttime = [];
+                var selected_endtime = [];
+            
+        {% for id in id_list %}
+            {% for data in data_dict|return_item:id %}
+                var checkbox = '#';
+                var variable_id = 'Variable';
+                var starttime_id = '#Starttime';
+                var endtime_id = '#Endtime';
+                
+                checkbox = $(checkbox.concat("Check","_",String({{ id|stringformat:"s" }}),"_","{{ data.0|stringformat:"s" }}"));
+                variable_id = String(variable_id.concat( "_",String({{ id|stringformat:"s" }}),"_","{{ data.0|stringformat:"s" }}"))
+                starttime_id = String(starttime_id.concat("_",String({{ id|stringformat:"s" }}),"_","{{ data.0|stringformat:"s" }}"))
+                endtime_id = String(endtime_id.concat("_",String({{ id|stringformat:"s" }}),"_","{{ data.0|stringformat:"s" }}"))
+                
+                if(checkbox.is(':checked')){
+                    selected_id.push("{{id}}");
+                    selected_variable.push("{{data.0}}");
+                    selected_starttime.push($(starttime_id).val());
+                    selected_endtime.push($(endtime_id).val());
+                };
+            {% endfor %}
+        {% endfor %}
+        
+        $.ajax({
+            type: 'POST',
+            url: 'data_download',
+            data: {
+                'selected_id[]': selected_id,
+                'selected_variable[]': selected_variable,
+                'selected_starttime[]': selected_starttime,
+                'selected_endtime[]': selected_endtime
+            },
+            success: function(url){
+                window.location = url ;
+            },
+            error: function () {
+                alert('Failed in sending ajax request')
+            },
+            dataType: 'html',
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        });
+            });
+});
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,129 @@
+{% load static %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+    <style>
+        #map {
+            height: 550px;
+            width: 85%;
+            /*              position: relative;*/
+            float: right;
+        }
+        .tool {
+            display: inline-block;
+        }
+        #layers {
+            height: 550px;
+            /*              display: none;*/
+        }
+        .main-element {
+            display: inline-block;
+        }
+    </style>
+    <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1> Web GIS - Hydrological and Meterological Database </h1>
+        <div class="main">
+            <div class="toolbox">
+                <div class="tool" id="layer-manager">Layers</div>
+                <div class="tool" id="data-review">Data-review</div>
+            </div>
+
+
+            <div class="map-container">
+                <div class="main-element" id="layers">
+                    <table border="1px">
+                        <tr>
+                            <td>Visibility</td>
+                            <td>Layers</td>
+                            <td>Label</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="Station" type="checkbox" onclick="" checked>
+                            </td>
+                            <td>Stations</td>
+                            <td>
+                                <input id="Station-label" type="checkbox" onclick="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="River" type="checkbox" onclick="">
+                            </td>
+                            <td>River</td>
+                            <td>
+                                <input id="River-label" type="checkbox" onclick="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="Transport" type="checkbox" onclick="">
+                            </td>
+                            <td>Transport</td>
+                            <td>
+                                <input id="Transport-label" type="checkbox" onclick="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="Soil" type="checkbox" onclick="">
+                            </td>
+                            <td>Soil</td>
+                            <td>
+                                <input id="Soil-label" type="checkbox" onclick="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="Landuse" type="checkbox" onclick="">
+                            </td>
+                            <td>Landuse</td>
+                            <td>
+                                <input id = "Landuse-label" id type="checkbox" onclick="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="Province" type="checkbox" onclick="">
+                            </td>
+                            <td>Provinces</td>
+                            <td>
+                                <input id="Province-label" type="checkbox" onclick="">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="main-element" id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="span4 offset4">
+        <div id="info" class="alert alert-success">
+            &nbsp;
+        </div>
+    </div>
+    
+    <div class = "Test" id ="getzoom"> Get zoom </div>
+
+</body>
+
+<script src='{% static "assets/js/gisbase.js" %}' type="text/javascript">
+</script>
+
+</html>
+
+

@@ -1,0 +1,4 @@
+SiteCode,SiteName,Latitude,Longitude,LatLongDatumSRSName,Elevation_m,VerticalDatum,LocalX,LocalY,LocalProjectionSRSName,PosAccuracy_m,State,County,Comments
+997,Binh Son,10.7915,107.024861111,WGS84,,,,,WGS 84 / UTM zone 48N,,Ba Ria Vung Tau,,
+998,Hang Gon,10.892,107.217222222,WGS84,,,,,WGS 84 / UTM zone 48N,,Ba Ria Vung Tau,,
+999,Lo 25,10.940305556,107.240555556,WGS84,,,,,WGS 84 / UTM zone 48N,,Ba Ria Vung Tau,,

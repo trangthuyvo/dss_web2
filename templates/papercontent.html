@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 
+    Free Responsive Template by templatemo
+    http://www.templatemo.com
+-->
+{% load static %}
+<html>
+    <title>{{article.title}}</title>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css" href='{% static "assets/css/bootstrap.css" %}' />
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" href='{% static "assets/js/colorbox/colorbox.css" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "assets/css/templatemo_style.css" %}' />
+
+
+<body>
+    <div align="center">
+        <div id="article-title" class="blog-header">
+            <h1>{{article.title}}</h1>
+        </div>
+        <h1 class="txt_slogan">Date: {{article.pub_date}}</h1>
+        <span> Post by: 
+            <a class="link-orange">
+                <span class="text-orange">{{article.person}}</span>
+        </a>
+        </span>
+        <div id="article-body" class="blog-text">
+            <p>{{article.body}}</p>
+        </div>
+        <img class="img-responsive" src='{{article.picture.url}}' width=500px/>
+    </div>
+
+
+</body>
+
+
+</html>

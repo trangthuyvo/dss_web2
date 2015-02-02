@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- 
+    Free Responsive Template by templatemo
+    http://www.templatemo.com
+-->
+{% load static %}
+<html>
+    <title>Documents/Blogs</title>
+<!-- Google Web Font Embed -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css" href='{% static "assets/css/bootstrap.css" %}' />
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" href='{% static "assets/js/colorbox/colorbox.css" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "assets/css/templatemo_style.css" %}' />
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="templatemo-line-header" style="margin-top: 0px;">
+                <div class="text-center">
+                    <hr class="team_hr team_hr_left hr_gray" /><span class="span_blog txt_darkgrey">DOCUMENTS</span>
+                    <hr class="team_hr team_hr_right hr_gray" />
+                </div>
+            </div>
+            <br class="clearfix" />
+        </div>
+
+        <!-- write new blog -->
+        <div class="text-center">
+            <a class="btn btn-green" href=newpaper role="button">WRITE NEW PAPER</a>
+        </div>
+        {% for element in data %}
+        <div class="blog_box" id = {{element.id}}>
+            <div class="col-sm-5 col-md-6 blog_post">
+                <ul class="list-inline">
+                    <li class="col-md-4">
+                        <a href="{{element.id}}">
+                            <img src="{{ element.picture.url }}" width=170px/>
+                        </a>
+                    </li>
+                    <li class="col-md-8">
+                        <div class="pull-left">
+                            <span class="blog_header">{{element.title}}</span>
+                            <br/>
+                            <span>Posted by : <a class="link_orange" href="#"><span class="txt_orange">{{element.person}}</span>
+                            </a>
+                            </span>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-orange" href="#" role="button">{{element.pub_date}}</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="blog_post">
+                            {{element.body}}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.blog_post 1 -->
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+    </div>
+    </div>
+
+
+</body>
+
+</html>
